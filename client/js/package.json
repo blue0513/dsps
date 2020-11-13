@@ -1,0 +1,56 @@
+{
+  "name": "@dsps/client",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "description": "DSPS client library",
+  "homepage": "https://github.com/saiya/dsps/tree/main/client/js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saiya/dsps.git",
+    "directory": "client/js"
+  },
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "prerelease": "npm-run-all -p lint test -s build",
+    "build": "npm-run-all -l -s clean -p compile:*",
+    "clean": "rimraf lib esm",
+    "compile": "run-p -l compile:*",
+    "compile:esm": "tsc -p tsconfig.esm.json",
+    "compile:cjs": "tsc",
+    "test": "jest",
+    "test:ci": "jest --runInBand",
+    "lint": "run-p -l lint:*",
+    "fix": "run-p fix:*",
+    "lint:eslint": "eslint 'src/**/*.ts'",
+    "fix:lint": "eslint 'src/**/*.ts' --fix",
+    "lint:ts": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "typescript": "^4.1.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "core-js": "^3.8.0"
+  }
+}
